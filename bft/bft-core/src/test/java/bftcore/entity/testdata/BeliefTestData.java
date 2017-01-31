@@ -4,9 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import bftcore.entity.Belief;
-import bftcore.entity.impl.BeliefImpl;
-import bftcore.enumeration.BeliefTypeEnum;
-import bftcore.enumeration.TheisticTypeEnum;
 
 public class BeliefTestData {
 
@@ -15,8 +12,7 @@ public class BeliefTestData {
 		List<String> comments = new ArrayList<String>();
 		comments.add("Comment");
 
-		Belief religion = new BeliefImpl(BeliefTypeEnum.R, name,
-				TheisticTypeEnum.MONOTHEISM, comments);
+		Belief religion = null;//new BeliefImpl();
 
 		return religion;
 	}
@@ -26,7 +22,7 @@ public class BeliefTestData {
 		List<String> comments = new ArrayList<String>();
 		comments.add("Comment");
 
-		Belief religion = new BeliefImpl(BeliefTypeEnum.C, name, TheisticTypeEnum.MONOTHEISM, comments);
+		Belief religion = null;//new BeliefImpl(BeliefTypeEnum.C, name, TheisticTypeEnum.MONOTHEISM, comments);
 
 		return religion;
 	}
@@ -36,7 +32,7 @@ public class BeliefTestData {
 		List<String> comments = new ArrayList<String>();
 		comments.add("Comment");
 
-		Belief religion = new BeliefImpl(BeliefTypeEnum.S, name, TheisticTypeEnum.MONOTHEISM, comments);
+		Belief religion = null;//new BeliefImpl(BeliefTypeEnum.S, name, TheisticTypeEnum.MONOTHEISM, comments);
 
 		return religion;
 	}

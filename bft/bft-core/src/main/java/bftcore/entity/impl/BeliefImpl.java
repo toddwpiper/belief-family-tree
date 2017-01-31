@@ -1,9 +1,10 @@
 package bftcore.entity.impl;
 
+import com.elementalprime.bft.jpa.enums.BeliefTypeEnum;
+
 import bftcore.entity.Belief;
 import bftcore.entity.tree.Node;
 import bftcore.entity.tree.impl.NodeImpl;
-import bftcore.enumeration.BeliefTypeEnum;
 import bftcore.enumeration.TheisticTypeEnum;
 
 public class BeliefImpl extends NodeImpl implements Belief {

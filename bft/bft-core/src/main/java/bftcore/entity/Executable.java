@@ -6,8 +6,9 @@ import java.io.FileReader;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.elementalprime.bft.jpa.enums.BeliefTypeEnum;
+
 import bftcore.entity.impl.BeliefImpl;
-import bftcore.enumeration.BeliefTypeEnum;
 import bftcore.enumeration.ValidationMessageEnum;
 import bftcore.exception.ValidationException;
 import bftcore.manager.BeliefFamilyTreeManager;
