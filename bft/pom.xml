@@ -34,8 +34,8 @@
     </build>
 
 	<modules>
-		<module></module>
-		<module></module>
+		<module>bft-core</module>
+		<module>bft-web</module>
 	</modules>
 
 </project>
