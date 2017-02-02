@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: bftcore.render.InheritanceTreeRendererTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 2, Time elapsed: 0.005 sec

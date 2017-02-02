@@ -1,0 +1,5 @@
+bftcore\render\ImageGridTest.class
+bftcore\render\InheritanceTreeRendererTest.class
+bftcore\entity\testdata\InheritanceTreeTestData.class
+bftcore\BeliefManagerTest.class
+bftcore\InheritanceTreeTest.class

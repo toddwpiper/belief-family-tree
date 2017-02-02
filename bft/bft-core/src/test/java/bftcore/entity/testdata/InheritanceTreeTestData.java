@@ -11,7 +11,7 @@ public class InheritanceTreeTestData {
 			int branches) throws ValidationException {
 		InheritanceTree tree = new InheritanceTreeImpl();
 
-		Node node1 = BeliefTestData.getReligionTestData("R1");
+		Node node1 = null; //BeliefTestData.getReligionTestData("R1");
 		tree.addNode(node1);
 
 		createMultifurcatedGenerations(tree, node1, generations - 1, branches);
@@ -24,8 +24,7 @@ public class InheritanceTreeTestData {
 			throws ValidationException {
 
 		for (int i = 0; i < branches; i++) {
-			Node node1 = BeliefTestData.getReligionTestData(parent.getName()
-					+ (i + 1));
+			Node node1 = null;//BeliefTestData.getReligionTestData(parent.getName()+ (i + 1));
 			
 			tree.addNode(node1);
 			

@@ -2,6 +2,7 @@ package bftcore.render;
 
 import junit.framework.Assert;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import bftcore.entity.testdata.InheritanceTreeTestData;
@@ -11,6 +12,7 @@ import bftcore.exception.ValidationException;
 public class InheritanceTreeRendererTest {
 	
 	@Test
+	@Ignore
 	public void testText() throws ValidationException
 	{
 		/*
@@ -27,6 +29,7 @@ public class InheritanceTreeRendererTest {
 	}
 	
 	@Test
+	@Ignore
 	public void testSVG() throws ValidationException
 	{
 		/*

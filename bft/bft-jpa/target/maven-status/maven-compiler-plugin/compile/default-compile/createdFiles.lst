@@ -1,0 +1,13 @@
+com\elementalprime\bft\jpa\enums\DivinityEquality.class
+com\elementalprime\bft\jpa\entity\Belief.class
+com\elementalprime\bft\jpa\entity\Concept.class
+com\elementalprime\bft\jpa\entity\Person.class
+com\elementalprime\bft\jpa\enums\FaithAspectType.class
+com\elementalprime\bft\jpa\entity\AdherenceAspect.class
+com\elementalprime\bft\jpa\entity\Heritage.class
+com\elementalprime\bft\jpa\entity\Divinity.class
+com\elementalprime\bft\jpa\entity\Reference.class
+com\elementalprime\bft\jpa\config\JPAConfig.class
+com\elementalprime\bft\jpa\repository\BeliefRepository.class
+com\elementalprime\bft\jpa\enums\WorshipType.class
+com\elementalprime\bft\jpa\enums\BeliefType.class

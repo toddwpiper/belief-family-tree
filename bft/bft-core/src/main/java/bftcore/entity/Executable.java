@@ -6,7 +6,7 @@ import java.io.FileReader;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.elementalprime.bft.jpa.enums.BeliefTypeEnum;
+import com.elementalprime.bft.jpa.enums.BeliefType;
 
 import bftcore.entity.impl.BeliefImpl;
 import bftcore.enumeration.ValidationMessageEnum;
@@ -261,7 +261,7 @@ public class Executable {
 		String PATRIARCH_5 = getValueFromCSVLine(line, TOKEN_INDEX_PATRIARCH_5);
 		String NOTES = getValueFromCSVLine(line, TOKEN_INDEX_NOTES);
 
-		BeliefTypeEnum beliefType = getBeliefType(BELIEF_TYPE);
+		BeliefType beliefType = getBeliefType(BELIEF_TYPE);
 
 		Belief belief = new BeliefImpl(NAME, beliefType, SINGLE_SOURCE,
 				NUMBER_OF_MAJOR_GODS, MULTIPLE_WORSHIP, TEMPORARY_GOD,
@@ -272,12 +272,12 @@ public class Executable {
 		return belief;
 	}
 
-	private static BeliefTypeEnum getBeliefType(String beliefTypeValue) {
+	private static BeliefType getBeliefType(String beliefTypeValue) {
 		if (StringUtil.isEmpty(beliefTypeValue)) {
 			return null;
 		}
 
-		return BeliefTypeEnum.valueOf(beliefTypeValue);
+		return BeliefType.valueOf(beliefTypeValue);
 	}
 
 }

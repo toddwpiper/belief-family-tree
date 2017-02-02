@@ -9,6 +9,16 @@
 
 	<name>bft</name>
 	<url>http://maven.apache.org</url>
+	
+	<properties>
+        <buildDirectory>${project.basedir}/target</buildDirectory>
+        <maven.build.timestamp.format>dd/MM/yyyy HH:mm:ss a</maven.build.timestamp.format>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <build.java.vm>${java.vm.vendor} ${java.vm.version} ${java.vm.name}</build.java.vm>
+        <org.springframework.version>4.2.5.RELEASE</org.springframework.version>
+        <org.springframework.ws.version>2.2.0.RELEASE</org.springframework.ws.version>
+        <org.springframework.scope>provided</org.springframework.scope>
+    </properties>
 
 
 	<dependencies>

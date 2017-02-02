@@ -1,0 +1,10 @@
+datasource:
+    aws:
+      url: "jdbc:oracle:thin:RIO_SEARCH_UPDATE/rio_search_update@icsd-dev-16-gsa-oracle.aipo.gov.au:1524:gsa"
+      dataSourceClassName: oracle.jdbc.driver.OracleDriver
+      connectionTimeout: 3000
+      maxLifetime: 1800000
+      connectionTestQuery: "SELECT 1 FROM DUAL"
+      walletLocation: "(SOURCE=(METHOD=file)(METHOD_DATA=(DIRECTORY=c:/evs/sdms/wallet)))" 
+      schema: rio_search
+      dbMaxPoolSize: 1
