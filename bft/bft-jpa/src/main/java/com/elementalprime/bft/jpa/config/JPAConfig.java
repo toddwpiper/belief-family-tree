@@ -25,43 +25,38 @@ import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "au.gov.ipaustralia.rio.sdsm.aws.jpa.repository",
-                       entityManagerFactoryRef = "awsEntityManagerFactory",
-                       transactionManagerRef = "awsTransactionManager")
+@EnableJpaRepositories(basePackages = "com.elementalprime",
+                       entityManagerFactoryRef = "entityManagerFactory",
+                       transactionManagerRef = "transactionManager")
 @EnableTransactionManagement(proxyTargetClass = true)
 public class JPAConfig {
     private static final Logger LOG = LoggerFactory.getLogger(JPAConfig.class);
 
-    public static final String NAME_PERSISTENCE_UNIT = "awsPU";
+    public static final String NAME_PERSISTENCE_UNIT = "bftPU";
 
-    public static final String NAME_TRANSACTION_MANAGER = "awsTransactionManager";
+    public static final String NAME_TRANSACTION_MANAGER = "transactionManager";
 
-    public static final String NAME_DATA_SOURCE = "awsDS";
+    public static final String NAME_DATA_SOURCE = "dataSource";
 
-    public static final String NAME_ENTITY_MANAGER = "awsEntityManager";
+    public static final String NAME_ENTITY_MANAGER = "entityManager";
 
-    public static final String NAME_ENTITY_MANAGER_FACTORY = "awsEntityManagerFactory";
+    public static final String NAME_ENTITY_MANAGER_FACTORY = "entityManagerFactory";
 
-    @Value("${datasource.aws.maxLifetime}")
-    private Long maxLifetime;
-
-    @Value("${datasource.aws.url}")
+    @Value("${datasource.url}")
     private String dataSourceUrl;
-
-    @Value("${datasource.aws.dataSourceClassName}")
-    private String dataSourceClassName;
-
-    @Value("${datasource.aws.connectionTimeout}")
-    private Long connectionTimeout;
-
-    @Value("${datasource.aws.connectionTestQuery}")
-    private String connectionTestQuery;
-
-    @Value("${datasource.aws.schema}")
-    private String schema;
-
-    @Value("${datasource.aws.dbMaxPoolSize}")
+    
+    @Value("${datasource.dbMaxPoolSize}")
     private int maxPoolSize;
+    
+    private Long connectionTimeout = new Long("3000");
+    
+    private Long maxLifetime = new Long("1800000");
+    
+    private String dataSourceClassName = "org.postgresql.Driver";
+
+    private String connectionTestQuery = "SELECT 1";
+
+    private String schema = "bft";
 
     @Primary
     @Bean(name = NAME_DATA_SOURCE)

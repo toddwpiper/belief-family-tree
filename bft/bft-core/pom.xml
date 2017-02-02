@@ -23,6 +23,11 @@
 			<artifactId>batik</artifactId>
 			<version>1.1.1</version>
 		</dependency>
+		<dependency>
+		<groupId>com.elementalprime</groupId>
+		<artifactId>bft-jpa</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 

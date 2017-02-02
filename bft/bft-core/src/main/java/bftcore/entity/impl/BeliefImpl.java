@@ -1,6 +1,6 @@
 package bftcore.entity.impl;
 
-import com.elementalprime.bft.jpa.enums.BeliefTypeEnum;
+import com.elementalprime.bft.jpa.enums.BeliefType;
 
 import bftcore.entity.Belief;
 import bftcore.entity.tree.Node;
@@ -9,7 +9,7 @@ import bftcore.enumeration.TheisticTypeEnum;
 
 public class BeliefImpl extends NodeImpl implements Belief {
 
-	private BeliefTypeEnum beliefType;
+	private BeliefType beliefType;
 	private TheisticTypeEnum theisticTypeEnum;
 	private String singleSource;
 	private String multipleWorship;
@@ -28,7 +28,7 @@ public class BeliefImpl extends NodeImpl implements Belief {
 	private String notes;
 	private String numberOfGods;
 
-	public BeliefImpl(String name, BeliefTypeEnum beliefType,
+	public BeliefImpl(String name, BeliefType beliefType,
 			String singleSource, String numberOfGods, String multipleWorship,
 			String temporaryGod, String allGodsAreEqual,
 			String godsAreEqualToUniverse, String startPeriod,
@@ -64,7 +64,7 @@ public class BeliefImpl extends NodeImpl implements Belief {
 		}
 	}
 
-	public BeliefTypeEnum getBeliefType() {
+	public BeliefType getBeliefType() {
 		return beliefType;
 	}
 
