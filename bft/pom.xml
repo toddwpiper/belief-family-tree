@@ -19,6 +19,7 @@
         <org.springframework.ws.version>2.2.0.RELEASE</org.springframework.ws.version>
         <org.springframework.scope>provided</org.springframework.scope>
     </properties>
+<<<<<<< HEAD
     
      <dependencyManagement>
         <dependencies>
@@ -31,6 +32,8 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+=======
+>>>>>>> branch 'master' of https://github.com/toddwpiper/belief-family-tree.git
 
 
 	<dependencies>
