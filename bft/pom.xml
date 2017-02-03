@@ -19,6 +19,18 @@
         <org.springframework.ws.version>2.2.0.RELEASE</org.springframework.ws.version>
         <org.springframework.scope>provided</org.springframework.scope>
     </properties>
+    
+     <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.amazonaws</groupId>
+                <artifactId>aws-java-sdk-bom</artifactId>
+                <version>1.11.22</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
 
 	<dependencies>
@@ -115,6 +127,7 @@
 		<module>bft-jpa</module>
 		<module>bft-core</module>
 		<!-- module>bft-web</module -->
+		<module>bft-web</module>
 	</modules>
 
 </project>

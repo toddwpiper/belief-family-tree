@@ -1,0 +1,70 @@
+
+<div class="well">
+	<div class="row">
+		<div class="col-md-offset-2">
+			<h1>Manual Trade Mark Number Range Extract</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-4 col-md-offset-2">
+			<form name="tmForm" novalidate role="form">
+				<fieldset class="form-group" style="border-color: green; border-style: solid; border-width: 1px; padding-left: 5px">
+					<legend style="border-color: green; border-style: solid; border-width: 1px;">Extract Details</legend>
+
+					<label for="changeDesc" class="col-sm-8 control-label">Change Description</label>
+					<div class="col-sm-10">
+						<input id="changeDesc" type="text" ng-model="tmRangeCtrl.preview.changeDesc" class="form-control" title="Change Description" required />
+					</div>
+
+					<label for="startTmNumber" class="col-sm-8 control-label">Start Trade Mark Number</label>
+					<div class="col-sm-10">
+						<input id="startTmNumber" type="number" ng-model="tmRangeCtrl.preview.startTmNumber" class="form-control" title="Start Trade Mark Number" required />
+					</div>
+
+					<label for="endTmNumber" class="col-sm-8 control-label">End Trade Mark Number</label>
+					<div class="col-sm-10">
+						<input id="endTmNumber" type="number" ng-model="tmRangeCtrl.preview.endTmNumber" title="End Trade Mark Number" required />
+					</div>
+					<div class="col-lg-8">
+
+						<div class="radio">
+							<label> <input id="noBinaries" type="radio" ng-model="tmRangeCtrl.preview.binaryTransferType" title="No binaries" value="NONE" checked> No binaries
+							</label>
+						</div>
+
+						<div class="radio">
+							<label> <input id="newBinaries" type="radio" ng-model="tmRangeCtrl.preview.binaryTransferType" title="Only new binaries" value="ONLYNEW"> Only new binaries
+							</label>
+						</div>
+						<div class="radio">
+							<label> <input id="updateBinaries" type="radio" ng-model="tmRangeCtrl.preview.binaryTransferType" title="Update existing binaries" value="UPSERT"> Insert new & update existing
+								binaries
+							</label>
+						</div>
+					</div>
+				</fieldset>
+				<button type="button" class="btn btn-primary pull-right" ng-click="tmForm.$valid && tmRangeCtrl.extractBiblio()">Extract Biblio</button>
+				<button type="button" class="btn btn-warning pull-right" ng-click="tmForm.$valid && tmRangeCtrl.extractHeadstarts()">Extract Headstarts</button>
+				<button type="button" class="btn btn-success pull-right" ng-click="tmForm.$valid && tmRangeCtrl.extractBinaries()">Extract Binaries</button>
+			</form>
+		</div>
+		<div class="col-md-4">
+			<fieldset class="form-group" style="border-color: green; border-style: solid; border-width: 1px; padding-left: 5px">
+				<legend style="border-color: green; border-style: solid; border-width: 1px;">Extract Response</legend>
+				<div ng-show="tmRangeCtrl.showResponse()">
+					<h2>Response</h2>
+					<uib-progress> <uib-bar ng-repeat="bar in tmRangeCtrl.stacked" value="bar.value" type="{{bar.type}}"> <span ng-hide="bar.value < 5">{{bar.type}} - {{bar.value}}%</span> </uib-bar>
+					</uib-progress>
+
+					<!-- <ul>
+					<li class="alert alert-danger" role="alert"  
+					ng-repeat="error in tmRangeCtrl.serviceResponse.errors">{{error.tmRangeStart}} - {{error.tmRangeStart}}, {{error.failedReason}}</li>
+				</ul> -->
+				</div>
+				<div ng-hide="tmRangeCtrl.attemptedUpdate">
+					<h2>No response (work in progress!)</h2>
+				</div>
+			</fieldset>
+		</div>
+	</div>
+</div>

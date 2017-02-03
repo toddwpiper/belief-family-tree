@@ -1,0 +1,95 @@
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+    <!-- SSO -->
+<!-- 
+    <filter>
+        <filter-name>Agent</filter-name>
+        <filter-class>com.sun.identity.agents.filter.AmAgentFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Agent</filter-name>
+        <url-pattern>/*</url-pattern>
+        <dispatcher>ERROR</dispatcher>
+        <dispatcher>FORWARD</dispatcher>
+        <dispatcher>REQUEST</dispatcher>
+        <dispatcher>INCLUDE</dispatcher>
+    </filter-mapping>
+    
+    <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <realm-name>myrealm</realm-name>
+        <form-login-config>
+            <form-login-page>/login.xhtml</form-login-page>
+            <form-error-page>/loginFailed.xhtml</form-error-page>
+        </form-login-config>
+    </login-config>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>SecurePages</web-resource-name>
+            <description>All pages are secure</description>
+            <url-pattern>/*</url-pattern>
+        </web-resource-collection>
+
+        <auth-constraint>
+            <role-name>AUTHENTICATED_USERS</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>UnsecurePages</web-resource-name>
+            <description>Static resources are insecure</description>
+            <url-pattern>/resources/*</url-pattern>
+        </web-resource-collection>
+    </security-constraint>
+
+
+    <security-role>
+        <description>Provided by OpenAM, this is here as a marker to allow tomcat's JAAS to kick in</description>
+        <role-name>AUTHENTICATED_USERS</role-name>
+    </security-role> -->
+
+    <servlet>
+        <servlet-name>bft</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>bft</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    
+    <context-param>
+        <param-name>contextClass</param-name>
+        <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
+    </context-param>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>au.gov.ipaustralia.extract.config.AppConfig,classpath:net/bull/javamelody/monitoring-spring.xml</param-value>
+    </context-param>
+    
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    
+    <error-page>
+        <error-code>404</error-code>
+        <location>/404</location>
+    </error-page>
+    <error-page>
+        <location>/error</location>
+    </error-page>
+   
+</web-app>

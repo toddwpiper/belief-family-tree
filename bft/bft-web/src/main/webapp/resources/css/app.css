@@ -1,0 +1,27 @@
+.ng-valid.ng-dirty {border-color:green}
+.ng-invalid.ng-dirty {border-color: red} 
+ul
+{
+    list-style-type: none;
+    padding:0; 
+    margin:0;
+}
+
+.modal-lg {
+    width: 80%;
+}
+
+.modal-body textarea {
+	width:100%;
+	height:100%;
+}
+
+.modal-content,
+.modal-dialog,
+.modal-body {
+	height:90%;
+}
+
+body table tbody tr {
+	height:33px;
+}

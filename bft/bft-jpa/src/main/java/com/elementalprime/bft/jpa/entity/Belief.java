@@ -61,7 +61,7 @@ public class Belief {
 	@Column(name = "DIVINE_LAW_NAME")
 	private String divineLawName;
 	
-	@Column(name = "DIVINITY_EQUALITY")
+	@Column(name = "DIVINITY_EQUALITY_TYPE")
 	private DivinityEquality divinityEquality;
 	
 	@ManyToMany(fetch = FetchType.EAGER, mappedBy = "")
