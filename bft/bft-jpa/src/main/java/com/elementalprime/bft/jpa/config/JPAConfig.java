@@ -1,6 +1,7 @@
 package com.elementalprime.bft.jpa.config;
 
 import java.util.Properties;
+import java.util.ResourceBundle;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -10,9 +11,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.config.YamlPropertiesFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -42,11 +46,11 @@ public class JPAConfig {
 
     public static final String NAME_ENTITY_MANAGER_FACTORY = "entityManagerFactory";
 
-    @Value("${datasource.url}")
+    //@Value("${datasource.url}")
     private String dataSourceUrl;
     
-    @Value("${datasource.dbMaxPoolSize}")
-    private int maxPoolSize;
+    //@Value("${datasource.dbMaxPoolSize}")
+    private int maxPoolSize = 1;
     
     private Long connectionTimeout = new Long("3000");
     
@@ -57,10 +61,20 @@ public class JPAConfig {
     private String connectionTestQuery = "SELECT 1";
 
     private String schema = "bft";
+    
+    @Bean
+    public PropertySourcesPlaceholderConfigurer propertyPlaceholderConfigurer() {
+        PropertySourcesPlaceholderConfigurer x = new PropertySourcesPlaceholderConfigurer();
+        YamlPropertiesFactoryBean aws_persistence_yaml = new YamlPropertiesFactoryBean();
+        
+        aws_persistence_yaml.setResources(new ClassPathResource("bft-jpa-dev.yml"));
+        x.setProperties(aws_persistence_yaml.getObject());
+        return x;
+    }
 
     @Primary
-    @Bean(name = NAME_DATA_SOURCE)
-    public DataSource awsDataSource() {
+    @Bean
+    public DataSource dataSource() {
 
         LOG.info("Configuring HikariCP datasource for AWS");
         HikariConfig hc = new HikariConfig();
@@ -78,17 +92,15 @@ public class JPAConfig {
 
         hc.setDataSourceProperties(dsProperties);
 
-        // Security.insertProviderAt(new OraclePKIProvider(), 3);
-
         return new HikariDataSource(hc);
     }
 
     @Primary
-    @Bean(name = JPAConfig.NAME_ENTITY_MANAGER_FACTORY)
-    public LocalContainerEntityManagerFactoryBean awsEntityManagerFactory() {
+    @Bean
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
         LocalContainerEntityManagerFactoryBean b = new LocalContainerEntityManagerFactoryBean();
-        b.setDataSource(awsDataSource());
-        b.setPackagesToScan("au.gov.ipaustralia.rio.sdsm.aws.jpa.entity");
+        b.setDataSource(dataSource);
+        b.setPackagesToScan("com.elementalprime.bft.jpa.entity");
         b.setPersistenceUnitName(NAME_PERSISTENCE_UNIT);
 
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
@@ -102,8 +114,8 @@ public class JPAConfig {
     }
 
     @Primary
-    @Bean(name = { JPAConfig.NAME_TRANSACTION_MANAGER })
-    public PlatformTransactionManager awsTransactionManager(@Qualifier(JPAConfig.NAME_ENTITY_MANAGER_FACTORY) EntityManagerFactory emf) {
+    @Bean
+    public PlatformTransactionManager transactionManager(EntityManagerFactory emf) {
 
         JpaTransactionManager txManager = new JpaTransactionManager();
         txManager.setEntityManagerFactory(emf);
@@ -112,8 +124,8 @@ public class JPAConfig {
     }
 
     @Primary
-    @Bean(name = { JPAConfig.NAME_ENTITY_MANAGER })
-    public EntityManager entityManager(@Qualifier(JPAConfig.NAME_ENTITY_MANAGER_FACTORY) EntityManagerFactory emf) {
+    @Bean
+    public EntityManager entityManager(EntityManagerFactory emf) {
         return emf.createEntityManager();
     }
 

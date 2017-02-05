@@ -2,21 +2,7 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
 
-    <!-- SSO -->
 <!-- 
-    <filter>
-        <filter-name>Agent</filter-name>
-        <filter-class>com.sun.identity.agents.filter.AmAgentFilter</filter-class>
-    </filter>
-    <filter-mapping>
-        <filter-name>Agent</filter-name>
-        <url-pattern>/*</url-pattern>
-        <dispatcher>ERROR</dispatcher>
-        <dispatcher>FORWARD</dispatcher>
-        <dispatcher>REQUEST</dispatcher>
-        <dispatcher>INCLUDE</dispatcher>
-    </filter-mapping>
-    
     <filter>
         <filter-name>springSecurityFilterChain</filter-name>
         <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -54,12 +40,7 @@
             <url-pattern>/resources/*</url-pattern>
         </web-resource-collection>
     </security-constraint>
-
-
-    <security-role>
-        <description>Provided by OpenAM, this is here as a marker to allow tomcat's JAAS to kick in</description>
-        <role-name>AUTHENTICATED_USERS</role-name>
-    </security-role> -->
+-->
 
     <servlet>
         <servlet-name>bft</servlet-name>
@@ -77,7 +58,7 @@
     </context-param>
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>au.gov.ipaustralia.extract.config.AppConfig,classpath:net/bull/javamelody/monitoring-spring.xml</param-value>
+        <param-value>com.elementalprime.bft.web.config.AppConfig</param-value>
     </context-param>
     
     <listener>

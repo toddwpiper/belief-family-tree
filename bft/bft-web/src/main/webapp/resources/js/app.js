@@ -2,64 +2,67 @@
 (function() {
 	var app = angular.module('MyApp', ['ngAnimate', 'ui.bootstrap']);
 
-	app.controller('tmDeltaCtrl', function($scope, $location, $http) {
-		$scope.getDeltas = function(restUrl) {
-			$http.get(restUrl).success(function(data) {
-				$scope.deltaServiceResponse = data;
+	app.controller('beliefCtrl', function($scope, $location, $http) {
+		$scope.get = function(restUrl) {
+			var restUrl = 'belief';
+			var data = {
+					id: "2"
+	            };
+			
+			$http.get(restUrl, data).success(function(data) {
+				$scope.belief = data;
+				
+				alert(data);
 			});
 		};
 		
 		$scope.clear = function() {
-			preview.statusFilter = "";
-			preview.tmNumber = "";
+			/*
+			 * preview.statusFilter = ""; 
+			 */
 		}
 		
-		$scope.retry = function(changeSetId) {
-			var restUrl = 'deltas/retry';
+		$scope.create = function(restUrl) {
+			var restUrl = 'belief/create';
 			var data = {
-				changeDesc: changeSetId
-            };
+					id: "2"
+	            };
+			
+			$http.get(restUrl, data).success(function(data) {
+				$scope.belief = data;
 				
-			$http.post(restUrl, data).success(function(data, status, headers) {
 				alert(data);
 			});
+		};
+		
+		$scope.clear = function() {
+			/*
+			 * preview.statusFilter = ""; 
+			 */
 		}
 		
-		$scope.retryNew = function(changeSetId) {
-			var restUrl = 'deltas/retryNew';
+		$scope.update = function(restUrl) {
+			var restUrl = 'belief/update';
 			var data = {
-				changeDesc: changeSetId
-            };
+					id: "2"
+	            };
+			
+			$http.get(restUrl, data).success(function(data) {
+				$scope.belief = data;
 				
-			$http.post(restUrl, data).success(function(data, status, headers) {
 				alert(data);
 			});
+		};
+		
+		$scope.clear = function() {
+			/*
+			 * preview.statusFilter = ""; 
+			 */
 		}
+		
+		
 	});
 	
-	app.controller('tmRangesCtrl', function($scope, $location, $http) {
-		$scope.getRanges = function(restUrl) {
-			$http.get(restUrl).success(function(data) {
-				$scope.rangeServiceResponse = data;
-			});
-		};
-		
-		$scope.clear = function() {
-			preview.statusFilter = "";
-			preview.changeSetDesc = "";
-		}
-		
-		$scope.retry = function() {
-			var restUrl = 'biblio/range/retry';
-			var data = {
-				changeDesc: this.preview.changeSetDesc
-            };
-				
-			$http.post(restUrl, data).success(function(data, status, headers) {
-				location = headers('Location');
-			});
-		}
-	});
 	
 	app.controller('ModalInstanceCtrl', function ($scope, $uibModalInstance, pextract)
 	{
@@ -67,193 +70,9 @@
 		$scope.modifiedString =  JSON.stringify(JSON.parse(pextract.ipaJson.split('\r\n').join("")), undefined, 2);
 	});
 	
-	app.controller('changeSetCtrl', function($scope, $http, $uibModal) {
-		$scope.getChanges = function(restUrl) {
-			$http.get(restUrl).success(function(data) {
-				$scope.deltaServiceResponse = data;
-			});
-		};
-		
-		// MODAL WINDOW
-	    $scope.open = function (_extract) {
-
-	        var modalInstance = $uibModal.open({
-	          controller: "ModalInstanceCtrl",
-	          templateUrl: 'myModalContent.html',
-	          size: 'lg',
-	          resolve: {
-	            	pextract: function() {
-	                    return _extract;
-	                }
-	          }
-	        });
-
-	    };
-	});
 	
-	app.controller('verifyInternalCtrl', function($scope, $http, $uibModal) {
-			
-		$scope.getCounts= function() {
-			var restUrl = 'ccheckInternal/counts';
-			$http.get(restUrl).success(function(data) {
-				$scope.counts = data;
-			});
-		};
-		
-		$scope.getDetails= function() {
-			var restUrl = 'ccheckInternal/detailCounts';
-			$http.get(restUrl).success(function(data) {
-				$scope.detailCounts = data;
-			});
-		};
-		
-		$scope.getTimes= function() {
-			var restUrl = 'ccheckInternal/times';
-			$http.get(restUrl).success(function(data) {
-				$scope.times = data;
-			});
-		};
-		
-		$scope.getDiff= function(restUrl) {
-			$http.get(restUrl).success(function(data) {
-				$scope.detail = data;
-			});
-		};
-		
-		// MODAL WINDOW
-	    $scope.open = function (_extract) {
-
-	        var modalInstance = $uibModal.open({
-	          controller: "ModalInstanceCtrl",
-	          templateUrl: 'myModalContent.html',
-	          size: 'lg',
-	          resolve: {
-	            	pextract: function() {
-	                    return _extract;
-	                }
-	          }
-	        });
-	    };
-	    
-	    $scope.init=function() {
-	    	$scope.getCounts();
-	    	$scope.getDetails();
-	    	$scope.getDiff('ccheckInternal/detailDiff?sort=tmNumber,desc');
-	    	$scope.getTimes();
-	    };
-	    
-	    $scope.fixOPI = function() {
-			$http.post('ccheckInternal', null);
-		};
-	    
-	    $scope.fixNotOPI = function() {
-			$http.post('ccheckInternal/notOPI', {});
-		};
-		
-		$scope.removeOutOfSync = function() {
-			$http.post('ccheckInternal/removeOutOfSync', {});
-		};
-		
-		
-	});
 	
-	app.controller('verifyPublicCtrl', function($scope, $http, $uibModal) {
-		
-		$scope.getCounts= function() {
-			var restUrl = 'ccheckPublic/counts';
-			$http.get(restUrl).success(function(data) {
-				$scope.counts = data;
-			});
-		};
-		
-		$scope.getDetails= function() {
-			var restUrl = 'ccheckPublic/detailCounts';
-			$http.get(restUrl).success(function(data) {
-				$scope.detailCounts = data;
-			});
-		};
-		
-		$scope.getTimes= function() {
-			var restUrl = 'ccheckPublic/times';
-			$http.get(restUrl).success(function(data) {
-				$scope.times = data;
-			});
-		};
-		
-		$scope.getDiff= function(restUrl) {
-			$http.get(restUrl).success(function(data) {
-				$scope.detail = data;
-			});
-		};
-		
-		// MODAL WINDOW
-	    $scope.open = function (_extract) {
-
-	        var modalInstance = $uibModal.open({
-	          controller: "ModalInstanceCtrl",
-	          templateUrl: 'myModalContent.html',
-	          size: 'lg',
-	          resolve: {
-	            	pextract: function() {
-	                    return _extract;
-	                }
-	          }
-	        });
-	    };
-	    
-	    $scope.init=function() {
-	    	$scope.getCounts();
-	    	$scope.getDetails();
-	    	$scope.getDiff('ccheckPublic/detailDiff?sort=tmNumber,desc');
-	    	$scope.getTimes();
-	    };
-	    
-	    $scope.fixOPI = function() {
-			$http.post('ccheckPublic', null);
-		};
-	    
-	    $scope.fixNotOPI = function() {
-			$http.post('ccheckPublic/notOPI', {});
-		};
-		
-		$scope.removeOutOfSync = function() {
-			$http.post('ccheckPublic/removeOutOfSync', {});
-		};
-		
-		
-	});
-	
-	app.controller('runCtrl', function($scope, $location, $http) {
-		$scope.runCCheckUpdate = function() {
-			$http.post('run/cCheckUpdate', {});
-		};
-		$scope.runHashRebuild = function() {
-			$http.post('run/hashRebuild', {});
-		};
-		$scope.runHashRebuildNotOPI = function() {
-			$http.post('run/hashRebuildNotOPI', {});
-		};
-		$scope.runDbCleanup = function() {
-			$http.post('run/dbCleanup', {});
-		};
-		$scope.retryAgedIncompleteChangeSets = function() {
-			$http.post('run/retryAgedIncompleteChangeSets', {});
-		};
-		$scope.publishLastDetails = function() {
-			$http.post('run/publishLastDetails', {});
-		};
-	});
-	
-	app.directive('selectOnClick', function () {
-	    // Linker function
-	    return function (scope, element, attrs) {
-	      element.bind('click', function () {
-	        this.select();
-	      });
-	    };
-	  });
-	
-	app.directive('tmrangeForm', function() {
+	app.directive('beliefForm', function() {
 		return {
 			restrict: 'E',
 			templateUrl: 'resources/public/tmrangeForm.html',

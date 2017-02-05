@@ -3,16 +3,19 @@ package com.elementalprime.bft.jpa.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "HERITAGE")
+@Table(name = "HERITAGE", schema = "bft")
 public class Heritage {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "HERITAGE_ID")
 	private Integer id;
 	

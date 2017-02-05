@@ -2,14 +2,17 @@ package com.elementalprime.bft.jpa.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CONCEPT")
+@Table(name = "CONCEPT", schema = "bft")
 public class Concept {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "CONCEPT_ID")
 	private Integer id;
 	

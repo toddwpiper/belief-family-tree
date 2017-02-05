@@ -1,4 +1,4 @@
-package au.gov.ipaustralia.extract.config;
+package com.elementalprime.bft.web.config;
 
 
 import java.io.IOException;
@@ -10,11 +10,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
+import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerView;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
 
-import au.gov.ipaustralia.extract.web.util.FreemarkerUtil;
+import com.elementalprime.bft.web.utils.FreemarkerUtil;
+
 import freemarker.cache.TemplateLoader;
 import freemarker.template.TemplateException;
 import freemarker.template.TemplateExceptionHandler;
@@ -105,4 +109,5 @@ public class ViewConfig {
             delegate.closeTemplateSource(templateSource);
         }
     }
+    
 }

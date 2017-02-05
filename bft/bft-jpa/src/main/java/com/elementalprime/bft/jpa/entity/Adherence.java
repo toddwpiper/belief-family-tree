@@ -2,20 +2,26 @@ package com.elementalprime.bft.jpa.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.elementalprime.bft.jpa.enums.FaithAspectType;
 
 @Entity
-@Table(name = "ADHERENCE_ASPECT")
-public class AdherenceAspect {
+@Table(name = "ADHERENCE", schema="bft")
+public class Adherence {
 
 	@Id
-	@Column(name = "ADHERENCE_ASPECT_ID")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ADHERENCE_ID")
 	private Integer id;
 	
 	@Column(name = "TYPE_CODE")
+	@Enumerated(EnumType.STRING)
 	private FaithAspectType faithAspectType;
 	
 	@Column(name = "COMMENT_TEXT")

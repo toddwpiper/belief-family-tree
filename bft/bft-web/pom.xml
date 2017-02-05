@@ -9,7 +9,7 @@
 
 	<name>bft-web</name>
 	<url>http://maven.apache.org</url>
-	
+
 	<properties>
 		<!-- Explicitly declaring the source encoding eliminates the following 
 			message: -->
@@ -30,16 +30,24 @@
 	</properties>
 
 
-<dependencies>
+	<dependencies>
+
+		<dependency>
+			<groupId>com.elementalprime</groupId>
+			<artifactId>bft-jpa</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>com.elementalprime</groupId>
+			<artifactId>bft-jpa-test</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+
 		<dependency>
 			<groupId>joda-time</groupId>
 			<artifactId>joda-time</artifactId>
 			<version>2.9.3</version>
-		</dependency>
-		<dependency>
-			<groupId>au.gov.ipaustralia.rio.ipd</groupId>
-			<artifactId>ipd-extract-core</artifactId>
-			<version>${version}</version>
 		</dependency>
 
 		<dependency>
@@ -111,33 +119,6 @@
 			<version>1.17</version>
 		</dependency>
 
-		<!-- Metrics -->
-		<dependency>
-			<groupId>io.dropwizard.metrics</groupId>
-			<artifactId>metrics-core</artifactId>
-			<version>3.1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>io.dropwizard.metrics</groupId>
-			<artifactId>metrics-servlets</artifactId>
-			<version>3.1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>io.dropwizard.metrics</groupId>
-			<artifactId>metrics-jvm</artifactId>
-			<version>3.1.2</version>
-		</dependency>
-		<dependency>
-			<groupId>com.ryantenney.metrics</groupId>
-			<artifactId>metrics-spring</artifactId>
-			<version>3.1.3</version>
-		</dependency>
-		<dependency>
-			<groupId>net.bull.javamelody</groupId>
-			<artifactId>javamelody-core</artifactId>
-			<version>1.62.0</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
@@ -147,13 +128,6 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.12</version>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-core</artifactId>
-			<version>1.10.19</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -194,7 +168,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
-	</build>		
+	</build>
 
 	<parent>
 		<groupId>com.elementalprime</groupId>
