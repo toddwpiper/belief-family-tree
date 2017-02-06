@@ -28,24 +28,12 @@ public class BeliefController {
 
 	private static final Logger LOG = LoggerFactory.getLogger(BeliefController.class);
 
-	@RequestMapping(method = RequestMethod.POST)
-	public ModelAndView get(ModelAndView mv) {
+	@RequestMapping(method = RequestMethod.GET)
+	public Belief get(@RequestParam(value ="id", required=true) Integer id) {
 
-		Belief belief = new Belief();
-		belief.setId(1);
-		belief.setName("mv");
-		mv.addObject(belief);
-		mv.setViewName("base_page");
-		return mv;
-	}
-
-	@RequestMapping(value = "/get", method = RequestMethod.POST )
-	public Belief get(@RequestParam(name="id") Integer id ) {
-		
 		Belief belief = new Belief();
 		belief.setId(id);
-		belief.setName("get");
-		
+		belief.setName("mv");
 		return belief;
 	}
 
